@@ -5,23 +5,13 @@ To use it, create an empty file with a `.excalidraw`, `.excalidraw.json`, `.exca
 
 Try the web version at : <https://excalimath.my-lab.ro/>
 
-![screenshot](https://raw.githubusercontent.com/excalidraw/excalidraw-vscode/master/medias/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/dynow/excalimath-vscode/master/medias/screenshot3.png)
 
-## Configuration
-
-### Switch Excalidraw Theme
-
-![theme switching](https://raw.githubusercontent.com/excalidraw/excalidraw-vscode/master/medias/change-theme.gif)
-
-### Import Public Library
-
-![library import](https://raw.githubusercontent.com/excalidraw/excalidraw-vscode/master/medias/import-library.gif)
-
-### Switch between multiple file formats
+## Switch between multiple file formats
 
 Update the document extension to the desired format. For example, `document.excalidraw` -> `document.excalidraw.png`.
 
-### Associate Additional Extensions With the ExcaliMath Editor
+## Associate Additional Extensions With the ExcaliMath Editor
 
 By default, this extension only handles `*.excalidraw`, `*.excalidraw.svg` and `*.excalidraw.png` files.
 

@@ -6,7 +6,7 @@ To use it, create an empty file with a `.excalidraw`, `.excalidraw.json`, `.exca
 
 Try the web version of ExcaliMath at : <https://excalimath.my-lab.ro/> (ExcaliMath is fully compatible with Excalidraw).
 
-![demo](./medias/screenshot.png)
+![demo](./medias/screenshot3.png)
 
 - [Features](#features)
   - [Edit Images](#edit-images)
@@ -45,16 +45,6 @@ You can control the default export options using the `excalimath.image` setting:
 
 You can install this extension in [`github.dev`](https://github.dev) or [`vscode.dev`](https://vscode.dev).
 Editing an ExcaliMath schema stored in a GitHub repository has never been easier !
-
-### Switch Editor Theme
-
-The extension support three theme options:
-
-- light (default)
-- dark
-- auto (sync with VS Code Theme)
-
-![theme switching](./medias/change-theme.gif)
 
 ### Import Public Library
 
