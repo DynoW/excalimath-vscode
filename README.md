@@ -1,6 +1,7 @@
-# ExcaliMath
+# ExcaliMath: Technical Diagramming Meets Advanced Math
 
-This extension integrates ExcaliMath into VS Code.
+Stop struggling to hand-draw complex formulas or import blurry images into your diagrams. ExcaliMath bridges the gap between Excalidraw's intuitive whiteboard and powerful math rendering, right inside VS Code.
+
 To use it, create an empty file with a `.excalidraw`, `.excalidraw.json`, `.excalidraw.svg` or `.excalidraw.png` extension and open it in Visual Studio Code.
 
 Try the web version of ExcaliMath at : <https://excalimath.my-lab.ro/> (ExcaliMath is fully compatible with Excalidraw).
