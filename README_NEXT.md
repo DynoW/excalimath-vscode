@@ -1,9 +1,9 @@
-# Excalidraw
+# ExcaliMath
 
-This extension integrates Excalidraw into VS Code.
+This extension integrates ExcaliMath into VS Code.
 To use it, create an empty file with a `.excalidraw`, `.excalidraw.json`, `.excalidraw.svg` or `excalidraw.png` extension and open it in VSCode.
 
-Try the web version at : <https://excalidraw.com/>
+Try the web version at : <https://excalimath.my-lab.ro/>
 
 ![screenshot](https://raw.githubusercontent.com/excalidraw/excalidraw-vscode/master/medias/screenshot.png)
 
@@ -21,7 +21,7 @@ Try the web version at : <https://excalidraw.com/>
 
 Update the document extension to the desired format. For example, `document.excalidraw` -> `document.excalidraw.png`.
 
-### Associate Additional Extensions With the Excalidraw Editor
+### Associate Additional Extensions With the ExcaliMath Editor
 
 By default, this extension only handles `*.excalidraw`, `*.excalidraw.svg` and `*.excalidraw.png` files.
 
@@ -30,21 +30,9 @@ Add this to your VS Code settings.json file if you want to associate it with add
 ```json
 {
   "workbench.editorAssociations": {
-    "*.svg": "editor.excalidraw"
+    "*.svg": "editor.excalimath"
   }
 }
 ```
 
-You won't be able to edit arbitrary SVG files though - only those that have been created with Excalidraw or this extension!
-
-### Sharing your Library
-
-If you want to use a workspace specific library (and share it with other contributors), add this to your vscode workspace settings file (`.vscode/settings.json`):
-
-```json
-{
-  "excalidraw.workspaceLibraryPath": "path/to/library.excalidrawlib"
-}
-```
-
-The workspaceLibraryPath path is relative to your workspace root.
+You won't be able to edit arbitrary SVG files though - only those that have been created with Excalidraw or ExcaliMath!

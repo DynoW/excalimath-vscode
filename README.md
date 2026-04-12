@@ -1,9 +1,9 @@
-# Excalidraw
+# ExcaliMath
 
-This extension integrates Excalidraw into VS Code.
+This extension integrates ExcaliMath into VS Code.
 To use it, create an empty file with a `.excalidraw`, `.excalidraw.json`, `.excalidraw.svg` or `.excalidraw.png` extension and open it in Visual Studio Code.
 
-Try the web version at : <https://excalidraw.com/>
+Try the web version of ExcaliMath at : <https://excalimath.my-lab.ro/> (ExcaliMath is fully compatible with Excalidraw).
 
 ![demo](./medias/screenshot.png)
 
@@ -13,7 +13,7 @@ Try the web version at : <https://excalidraw.com/>
   - [Switch Editor Theme](#switch-editor-theme)
   - [Import Public Library](#import-public-library)
   - [View Drawing Source](#view-drawing-source)
-  - [Associate Additional Extensions with the Excalidraw Editor](#associate-additional-extensions-with-the-excalidraw-editor)
+  - [Associate Additional Extensions with the ExcaliMath Editor](#associate-additional-extensions-with-the-excalimath-editor)
   - [Sharing your Library](#sharing-your-library)
   - [Configure Language](#configure-language)
 - [Contact](#contact)
@@ -28,11 +28,11 @@ You can also switch between text and image format by updating the file extension
 
 ![Image can be edited directly](./medias/edit_image.gif)
 
-You can control the default export options using the `excalidraw.image` setting:
+You can control the default export options using the `excalimath.image` setting:
 
 ```json
 {
-  "excalidraw.image": {
+  "excalimath.image": {
     "exportScale": 1,
     "exportWithBackground": true,
     "exportWithDarkMode": false
@@ -43,7 +43,7 @@ You can control the default export options using the `excalidraw.image` setting:
 ### Draw from your browser
 
 You can install this extension in [`github.dev`](https://github.dev) or [`vscode.dev`](https://vscode.dev).
-Editing an Excalidraw schema stored in a GitHub repository has never been easier !
+Editing an ExcaliMath schema stored in a GitHub repository has never been easier !
 
 ### Switch Editor Theme
 
@@ -63,11 +63,11 @@ Check out the available libraries at [libraries.excalidraw.com](https://librarie
 
 ### View Drawing Source
 
-You can switch between the Excalidraw editor and the source (text or image) using the editor toolbar.
+You can switch between the ExcaliMath editor and the source (text or image) using the editor toolbar.
 
 ![Use the dedicated toolbar button to view the diagram source](./medias/view_source.gif)
 
-### Associate Additional Extensions with the Excalidraw Editor
+### Associate Additional Extensions with the ExcaliMath Editor
 
 By default, this extension only handles `*.excalidraw`, `*.excalidraw.svg` and `*.excalidraw.png` files.
 
@@ -76,20 +76,20 @@ Add this to your VS Code `settings.json` file if you want to associate it with a
 ```json
 {
   "workbench.editorAssociations": {
-    "*.svg": "editor.excalidraw"
+    "*.svg": "editor.excalimath"
   }
 }
 ```
 
-You won't be able to edit arbitrary SVG files though - only those that have been created with Excalidraw or this extension!
+You won't be able to edit arbitrary SVG files though - only those that have been created with Excalidraw, ExcaliMath, or this extension!
 
 ### Sharing your Library
 
-If you want to use a workspace specific library (and share it with other contributors), set the `excalidraw.workspaceLibraryPath` in your Visual Studio Code workspace settings file (`.vscode/settings.json`):
+If you want to use a workspace specific library (and share it with other contributors), set the `excalimath.workspaceLibraryPath` in your Visual Studio Code workspace settings file (`.vscode/settings.json`):
 
 ```json
 {
-  "excalidraw.workspaceLibraryPath": "path/to/library.excalidrawlib"
+  "excalimath.workspaceLibraryPath": "path/to/library.excalidrawlib"
 }
 ```
 
@@ -97,22 +97,22 @@ The `workspaceLibraryPath` path is relative to your workspace root. Absolute pat
 
 ### Configure Language
 
-By default, the extension will use the [Visual Studio Code Display Language](https://code.visualstudio.com/docs/getstarted/locales) to determine the language to use. You can overwrite it using the `excalidraw.language` setting:
+By default, the extension will use the [Visual Studio Code Display Language](https://code.visualstudio.com/docs/getstarted/locales) to determine the language to use. You can overwrite it using the `excalimath.language` setting:
 
 ```json
 {
-  "excalidraw.language": "fr-FR"
+  "excalimath.language": "fr-FR"
 }
 ```
 
 ## Contact
 
-Only bug reports / feature requests specifics to the VS Code integration should go to the extension repository. If it is not the case, please report your issue directly to the Excalidraw project.
+Only bug reports or feature requests specific to the VS Code integration should go to the extension repository. If it is not the case, please report your issue directly to the ExcaliMath or Excalidraw project.
 
 ## Note for Contributors
 
 Thank you for considering contributing to the extension :sparkling_heart: !
 
-This extension only goal is to integrate Excalidraw to the Visual Studio Code ecosystem. Users should be able to use both the website and the extension with a minimal amount of friction. As such, we will not accept any contribution that significantly modify the user experience compared to the Excalidraw website.
+This extension's main goal is to bring ExcaliMath (and its Excalidraw compatibility) to the Visual Studio Code ecosystem. Users should be able to use both the website and the extension with a minimal amount of friction. As such, we will not accept any contribution that significantly modifies the user experience compared to the ExcaliMath/Excalidraw website.
 
-There are exceptions to this rule (for example, the switch theme icon was deported to Visual Studio Code editor toolbar to allow a better integration). In case of uncertainty, create a thread in the project [Discussion Page](https://github.com/excalidraw/excalidraw-vscode/discussions).
+There are exceptions to this rule (for example, the switch theme icon was deported to Visual Studio Code editor toolbar to allow a better integration). In case of uncertainty, create a thread in the project [Discussion Page](https://github.com/DynoW/excalimath-vscode/discussions).

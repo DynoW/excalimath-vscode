@@ -42,36 +42,36 @@
     "contributes": {
         "commands": [
             {
-                "command": "excalidraw.updateTheme",
+                "command": "excalimath.updateTheme",
                 "category": "Excalidraw",
                 "title": "Color Theme",
                 "icon": "$(color-mode)"
             },
             {
-                "command": "excalidraw.newFile",
+                "command": "excalimath.newFile",
                 "category": "Excalidraw",
                 "title": "Scene",
                 "icon": "$(color-mode)"
             },
             {
-                "command": "excalidraw.newSceneFile",
+                "command": "excalimath.newSceneFile",
                 "category": "Excalidraw",
                 "title": "New File",
                 "icon": "$(color-mode)"
             },
             {
-                "command": "excalidraw.preventDefault",
+                "command": "excalimath.preventDefault",
                 "category": "Excalidraw",
                 "title": "Prevent Default"
             },
             {
-                "command": "excalidraw.showSource",
+                "command": "excalimath.showSource",
                 "category": "Excalidraw",
                 "title": "Open Source",
                 "icon": "$(go-to-file)"
             },
             {
-                "command": "excalidraw.showEditor",
+                "command": "excalimath.showEditor",
                 "category": "Excalidraw",
                 "title": "Open Excalidraw",
                 "icon": {
@@ -80,19 +80,19 @@
                 }
             },
             {
-                "command": "excalidraw.showImage",
+                "command": "excalimath.showImage",
                 "category": "Excalidraw",
                 "title": "Open Image",
                 "icon": "$(go-to-file)"
             },
             {
-                "command": "excalidraw.showSourceToSide",
+                "command": "excalimath.showSourceToSide",
                 "category": "Excalidraw",
                 "title": "Open Source to the Side",
                 "icon": "$(go-to-file)"
             },
             {
-                "command": "excalidraw.showEditorToSide",
+                "command": "excalimath.showEditorToSide",
                 "category": "Excalidraw",
                 "title": "Open Excalidraw to the Side",
                 "icon": {
@@ -101,7 +101,7 @@
                 }
             },
             {
-                "command": "excalidraw.showImageToSide",
+                "command": "excalimath.showImageToSide",
                 "category": "Excalidraw",
                 "title": "Open Image to the Side",
                 "icon": "$(go-to-file)"
@@ -111,7 +111,7 @@
             {
                 "title": "Excalidraw",
                 "properties": {
-                    "excalidraw.theme": {
+                    "excalimath.theme": {
                         "description": "Excalidraw theme. Use auto to sync theme with VSCode color theme.",
                         "type": "string",
                         "default": "light",
@@ -121,7 +121,7 @@
                             "dark"
                         ]
                     },
-                    "excalidraw.language": {
+                    "excalimath.language": {
                         "type": "string",
                         "description": "Language of the Excalidraw Editor. Defauts to the VS Code display language.",
                         "enum": [
@@ -215,12 +215,12 @@
                             "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
                         ]
                     },
-                    "excalidraw.workspaceLibraryPath": {
+                    "excalimath.workspaceLibraryPath": {
                         "scope": "window",
                         "description": "Path to the file used to store the excalidraw library (relative to workspace root). If not set, the library will be persisted in the user storage.",
                         "type": "string"
                     },
-                    "excalidraw.image": {
+                    "excalimath.image": {
                         "description": "Settings specifics to image with embed scene.",
                         "type": "object",
                         "properties": {
@@ -266,76 +266,76 @@
         "menus": {
             "commandPalette": [
                 {
-                    "command": "excalidraw.newFile",
+                    "command": "excalimath.newFile",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.updateTheme",
-                    "when": "activeCustomEditorId == 'editor.excalidraw'"
+                    "command": "excalimath.updateTheme",
+                    "when": "activeCustomEditorId == 'editor.excalimath'"
                 },
                 {
-                    "command": "excalidraw.preventDefault",
+                    "command": "excalimath.preventDefault",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.showSource",
+                    "command": "excalimath.showSource",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.showEditor",
+                    "command": "excalimath.showEditor",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.showImage",
+                    "command": "excalimath.showImage",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.showSourceToSide",
+                    "command": "excalimath.showSourceToSide",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.showEditorToSide",
+                    "command": "excalimath.showEditorToSide",
                     "when": "false"
                 },
                 {
-                    "command": "excalidraw.showImageToSide",
+                    "command": "excalimath.showImageToSide",
                     "when": "false"
                 }
             ],
             "editor/title": [
                 {
-                    "command": "excalidraw.showEditor",
-                    "alt": "excalidraw.showEditorToSide",
-                    "when": "activeCustomEditorId != 'editor.excalidraw' && resourceFilename =~ /^.+\\.excalidraw(.png|.svg)?$/",
+                    "command": "excalimath.showEditor",
+                    "alt": "excalimath.showEditorToSide",
+                    "when": "activeCustomEditorId != 'editor.excalimath' && resourceFilename =~ /^.+\\.excalidraw(.png|.svg)?$/",
                     "group": "navigation"
                 },
                 {
-                    "command": "excalidraw.showSource",
-                    "alt": "excalidraw.showSourceToSide",
+                    "command": "excalimath.showSource",
+                    "alt": "excalimath.showSourceToSide",
                     "group": "navigation",
-                    "when": "activeCustomEditorId == 'editor.excalidraw' && resourceFilename =~ /^.+\\.excalidraw(.svg)?$/"
+                    "when": "activeCustomEditorId == 'editor.excalimath' && resourceFilename =~ /^.+\\.excalidraw(.svg)?$/"
                 },
                 {
-                    "command": "excalidraw.showImage",
-                    "alt": "excalidraw.showImageToSide",
-                    "when": "activeCustomEditorId == 'editor.excalidraw' && resourceFilename =~ /^.+\\.excalidraw.png$/",
+                    "command": "excalimath.showImage",
+                    "alt": "excalimath.showImageToSide",
+                    "when": "activeCustomEditorId == 'editor.excalimath' && resourceFilename =~ /^.+\\.excalidraw.png$/",
                     "group": "navigation"
                 },
                 {
-                    "command": "excalidraw.updateTheme",
-                    "when": "activeCustomEditorId == 'editor.excalidraw'",
+                    "command": "excalimath.updateTheme",
+                    "when": "activeCustomEditorId == 'editor.excalimath'",
                     "group": "navigation"
                 }
             ],
             "file/newFile": [
                 {
-                    "command": "excalidraw.newFile"
+                    "command": "excalimath.newFile"
                 }
             ]
         },
         "customEditors": [
             {
-                "viewType": "editor.excalidraw",
+                "viewType": "editor.excalimath",
                 "displayName": "ExcaliMath",
                 "priority": "default",
                 "selector": [
@@ -356,16 +356,16 @@
         ],
         "keybindings": [
             {
-                "command": "excalidraw.preventDefault",
+                "command": "excalimath.preventDefault",
                 "key": "ctrl+z",
                 "mac": "cmd+z",
-                "when": "activeCustomEditorId == 'editor.excalidraw'"
+                "when": "activeCustomEditorId == 'editor.excalimath'"
             },
             {
-                "command": "excalidraw.preventDefault",
+                "command": "excalimath.preventDefault",
                 "key": "ctrl+y",
                 "mac": "cmd+shift+z",
-                "when": "activeCustomEditorId == 'editor.excalidraw'"
+                "when": "activeCustomEditorId == 'editor.excalimath'"
             }
         ]
     },

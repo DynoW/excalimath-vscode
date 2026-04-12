@@ -48,7 +48,7 @@ export class ExcalidrawEditorProvider
       });
   }
 
-  private static readonly viewType = "editor.excalidraw";
+  private static readonly viewType = "editor.excalimath";
 
   constructor(private readonly context: vscode.ExtensionContext) {}
 
@@ -185,7 +185,7 @@ export class ExcalidrawEditor {
 
     const onDidChangeThemeConfiguration =
       vscode.workspace.onDidChangeConfiguration((e) => {
-        if (!e.affectsConfiguration("excalidraw.theme", this.document.uri)) {
+        if (!e.affectsConfiguration("excalimath.theme", this.document.uri)) {
           return;
         }
         this.webview.postMessage({
@@ -195,7 +195,7 @@ export class ExcalidrawEditor {
       }, this);
 
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (!e.affectsConfiguration("excalidraw.language", this.document.uri)) {
+      if (!e.affectsConfiguration("excalimath.language", this.document.uri)) {
         return;
       }
       this.webview.postMessage({
@@ -206,7 +206,7 @@ export class ExcalidrawEditor {
 
     const onDidChangeEmbedConfiguration =
       vscode.workspace.onDidChangeConfiguration((e) => {
-        if (!e.affectsConfiguration("excalidraw.image", this.document.uri)) {
+        if (!e.affectsConfiguration("excalimath.image", this.document.uri)) {
           return;
         }
         this.webview.postMessage({
@@ -219,7 +219,7 @@ export class ExcalidrawEditor {
       vscode.workspace.onDidChangeConfiguration(async (e) => {
         if (
           !e.affectsConfiguration(
-            "excalidraw.workspaceLibraryPath",
+            "excalimath.workspaceLibraryPath",
             this.document.uri
           )
         ) {
@@ -277,12 +277,12 @@ export class ExcalidrawEditor {
   }
 
   private getImageParams() {
-    return vscode.workspace.getConfiguration("excalidraw").get("image");
+    return vscode.workspace.getConfiguration("excalimath").get("image");
   }
 
   private getLanguage() {
     return (
-      vscode.workspace.getConfiguration("excalidraw").get("language") ||
+      vscode.workspace.getConfiguration("excalimath").get("language") ||
       languageMap[vscode.env.language as keyof typeof languageMap]
     );
   }

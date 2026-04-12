@@ -30,6 +30,6 @@ export async function newUntitledExcalidrawDocument() {
   await vscode.commands.executeCommand(
     "vscode.openWith",
     uri,
-    "editor.excalidraw"
+    "editor.excalimath"
   );
 }
