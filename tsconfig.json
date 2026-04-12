@@ -12,6 +12,7 @@
     "strict": true,
     "rootDir": "src"
   },
+  "include": ["src"],
   "exclude": [
     ".vscode-test",
     "**/src/excalidraw/**",
