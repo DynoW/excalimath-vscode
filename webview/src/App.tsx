@@ -16,6 +16,7 @@ import {
   ExcalidrawInitialDataState,
   LibraryItems,
 } from "@excalidraw/excalidraw/types";
+import { ExcaliMath } from "@excalimath/core";
 import { vscode } from "./vscode.ts";
 
 function detectTheme() {
@@ -156,6 +157,15 @@ export default function App(props: {
     <div className="excalidraw-wrapper">
       <Excalidraw
         excalidrawAPI={(api) => setExcalidrawAPI(api)}
+        renderTopRightUI={() =>
+          excalidrawAPI ? (
+            <ExcaliMath
+              excalidrawAPI={excalidrawAPI}
+              enabledPlugins={["equation", "graph", "library"]}
+              theme={theme}
+            />
+          ) : null
+        }
         UIOptions={{
           canvasActions: {
             loadScene: false,
