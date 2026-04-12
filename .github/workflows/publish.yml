@@ -1,0 +1,31 @@
+name: Publish Extension
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger automatically when you push a tag like v1.0.0
+  workflow_dispatch: # Also allow you to trigger it manually from the GitHub UI
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # Crucial: this tells GitHub to clone the excalimath vendor folder too!
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Package Extension
+        run: npm run package
+
+      - name: Publish to Visual Studio Marketplace
+        run: npx @vscode/vsce publish -p ${{ secrets.VSCE_PAT }}

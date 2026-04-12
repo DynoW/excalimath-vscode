@@ -1,34 +1,42 @@
 {
     "name": "excalimath-editor",
-    "icon": "assets/logo.png",
+    "icon": "assets/logo-transparent.png",
     "displayName": "ExcaliMath",
-    "description": "Draw schemas in VS Code using Excalidraw",
+    "description": "Draw schemas in VS Code using ExcaliMath",
     "version": "3.9.1",
-    "publisher": "pomdtr",
+    "publisher": "DynoW",
     "engines": {
         "vscode": "^1.63.0"
     },
     "categories": [
-        "Visualization"
+        "Visualization",
+        "Notebooks"
     ],
     "keywords": [
         "draw",
         "schemas",
         "graphics",
         "paint",
-        "excalidraw"
+        "excalimath",
+        "excalidraw",
+        "diagrams",
+        "sketches",
+        "whiteboard",
+        "notes",
+        "math",
+        "equations",
+        "latex"
     ],
     "author": {
-        "name": "pomdtr",
-        "email": "achille.lacoin@gmail.com",
-        "url": "https://github.com/pomdtr"
+        "name": "DynoW",
+        "url": "https://github.com/DynoW"
     },
     "activationEvents": [
         "workspaceContains:**/*.{excalidraw,excalidraw.svg,excalidraw.png}"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/excalidraw/excalidraw-vscode"
+        "url": "https://github.com/DynoW/excalimath-vscode"
     },
     "browser": "./dist/extension.js",
     "contributes": {
