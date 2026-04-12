@@ -3,7 +3,7 @@
     "icon": "assets/logo-transparent.png",
     "displayName": "ExcaliMath",
     "description": "Draw schemas in VS Code using ExcaliMath",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "publisher": "DynoW",
     "engines": {
         "vscode": "^1.63.0"
