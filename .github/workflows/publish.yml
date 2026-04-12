@@ -9,6 +9,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,8 +26,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Package Extension
-        run: npm run package
+      - name: Build VSIX
+        run: npx @vscode/vsce package
 
       - name: Publish to Visual Studio Marketplace
-        run: npx @vscode/vsce publish -p ${{ secrets.VSCE_PAT }}
+        run: npx @vscode/vsce publish -i *.vsix -p ${{ secrets.VSCE_PAT }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.vsix"
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
