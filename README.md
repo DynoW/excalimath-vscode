@@ -1,35 +1,51 @@
-# ExcaliMath: Technical Diagramming Meets Advanced Math
+# ExcaliMath for VS Code
 
-Stop struggling to hand-draw complex formulas or import blurry images into your diagrams. ExcaliMath bridges the gap between Excalidraw's intuitive whiteboard and powerful math rendering, right inside VS Code.
+Turn VS Code into your math diagram studio.
 
-To use it, create an empty file with a `.excalidraw`, `.excalidraw.json`, `.excalidraw.svg` or `.excalidraw.png` extension and open it in Visual Studio Code.
+ExcaliMath brings Excalidraw and advanced math workflows directly into Visual Studio Code, so you can create and edit equations, plots, and technical visuals without leaving your editor.
 
-Try the web version of ExcaliMath at : <https://excalimath.my-lab.ro/> (ExcaliMath is fully compatible with Excalidraw).
+Create or open files with one of these extensions:
 
-![demo](./medias/screenshot3.png)
+- `.excalidraw`
+- `.excalidraw.svg`
+- `.excalidraw.png`
+- `.excalidraw.json`
 
-- [Features](#features)
-  - [Edit Images](#edit-images)
-  - [Draw from your browser](#draw-from-your-browser)
-  - [Switch Editor Theme](#switch-editor-theme)
-  - [Import Public Library](#import-public-library)
-  - [View Drawing Source](#view-drawing-source)
-  - [Associate Additional Extensions with the ExcaliMath Editor](#associate-additional-extensions-with-the-excalimath-editor)
-  - [Sharing your Library](#sharing-your-library)
-  - [Configure Language](#configure-language)
-- [Contact](#contact)
-- [Note for Contributors](#note-for-contributors)
+Try the web version: <https://excalimath.my-lab.ro/> (fully Excalidraw compatible).
 
-## Features
+![Workspace-focused view](./medias/screenshot.png)
 
-### Edit Images
+## Why install
 
-The source of the drawing can be embedded directly in a PNG or SVG image. Just create a new `.excalidraw.png` or `.excalidraw.svg` file.
-You can also switch between text and image format by updating the file extension (ex: rename a `.excalidraw` file to `.excalidraw.png`).
+- Faster math diagrams for notes, docs, lectures, and technical reports
+- Native Excalidraw compatibility across web and VS Code workflows
+- Editable `.png` and `.svg` with embedded source
+- One-tool pipeline for draw, refine, and export
 
-![Image can be edited directly](./medias/edit_image.gif)
+## Showcase
 
-You can control the default export options using the `excalimath.image` setting:
+### Switch theme quickly
+
+![Theme switching showcase](./medias/screenshot-theme.png)
+
+### Plot equations
+
+![Full VS Code context view](./medias/screenshot-plot.png)
+
+### Update equations fast
+
+![Equation update showcase](./medias/screenshot-update.png)
+
+## Key features
+
+### Edit images directly
+
+Rename file extension to change export/source format, for example:
+
+- `document.excalidraw` -> `document.excalidraw.png`
+- `document.excalidraw` -> `document.excalidraw.svg`
+
+Configure image export defaults:
 
 ```json
 {
@@ -41,28 +57,34 @@ You can control the default export options using the `excalimath.image` setting:
 }
 ```
 
-### Draw from your browser
+### Draw from browser-based VS Code
 
-You can install this extension in [`github.dev`](https://github.dev) or [`vscode.dev`](https://vscode.dev).
-Editing an ExcaliMath schema stored in a GitHub repository has never been easier !
+Install and use the extension in:
 
-### Import Public Library
+- [github.dev](https://github.dev)
+- [vscode.dev](https://vscode.dev)
 
-Check out the available libraries at [libraries.excalidraw.com](https://libraries.excalidraw.com), and don't hesitate to contribute your own !
+Great for editing diagrams directly from GitHub repositories.
 
-![Public libraries can be imported from the browser](./medias/import-library.gif)
+### Import public libraries
 
-### View Drawing Source
+Use reusable community assets from [libraries.excalidraw.com](https://libraries.excalidraw.com).
 
-You can switch between the ExcaliMath editor and the source (text or image) using the editor toolbar.
+### View and edit drawing source
 
-![Use the dedicated toolbar button to view the diagram source](./medias/view_source.gif)
+Switch between visual editor and file source (text/image) using the editor toolbar.
 
-### Associate Additional Extensions with the ExcaliMath Editor
+![View source from toolbar](./medias/screenshot-source.png)
 
-By default, this extension only handles `*.excalidraw`, `*.excalidraw.svg` and `*.excalidraw.png` files.
+### Associate more file extensions
 
-Add this to your VS Code `settings.json` file if you want to associate it with additional file extensions (ex: SVG):
+By default, the extension handles:
+
+- `*.excalidraw`
+- `*.excalidraw.svg`
+- `*.excalidraw.png`
+
+To associate more extensions (example: all SVG files), add:
 
 ```json
 {
@@ -72,11 +94,11 @@ Add this to your VS Code `settings.json` file if you want to associate it with a
 }
 ```
 
-You won't be able to edit arbitrary SVG files though - only those that have been created with Excalidraw, ExcaliMath, or this extension!
+Note: only Excalidraw/ExcaliMath-compatible SVG content is editable.
 
-### Sharing your Library
+### Share a workspace library
 
-If you want to use a workspace specific library (and share it with other contributors), set the `excalimath.workspaceLibraryPath` in your Visual Studio Code workspace settings file (`.vscode/settings.json`):
+Set a workspace library path in `.vscode/settings.json`:
 
 ```json
 {
@@ -84,11 +106,12 @@ If you want to use a workspace specific library (and share it with other contrib
 }
 ```
 
-The `workspaceLibraryPath` path is relative to your workspace root. Absolute path are also supported, but it will be specific to your device.
+The path is relative to workspace root (absolute paths also work, but are machine-specific).
 
-### Configure Language
+### Configure language
 
-By default, the extension will use the [Visual Studio Code Display Language](https://code.visualstudio.com/docs/getstarted/locales) to determine the language to use. You can overwrite it using the `excalimath.language` setting:
+By default, extension language follows VS Code display language.
+Override with:
 
 ```json
 {
@@ -98,12 +121,14 @@ By default, the extension will use the [Visual Studio Code Display Language](htt
 
 ## Contact
 
-Only bug reports or feature requests specific to the VS Code integration should go to the extension repository. If it is not the case, please report your issue directly to the ExcaliMath or Excalidraw project.
+Report VS Code integration bugs and feature requests in this repository.
 
-## Note for Contributors
+For core editor behavior unrelated to VS Code integration, use the ExcaliMath or Excalidraw project trackers.
 
-Thank you for considering contributing to the extension :sparkling_heart: !
+## Note for contributors
 
-This extension's main goal is to bring ExcaliMath (and its Excalidraw compatibility) to the Visual Studio Code ecosystem. Users should be able to use both the website and the extension with a minimal amount of friction. As such, we will not accept any contribution that significantly modifies the user experience compared to the ExcaliMath/Excalidraw website.
+The extension goal is a smooth, low-friction bridge between ExcaliMath web and VS Code.
 
-There are exceptions to this rule (for example, the switch theme icon was deported to Visual Studio Code editor toolbar to allow a better integration). In case of uncertainty, create a thread in the project [Discussion Page](https://github.com/DynoW/excalimath-vscode/discussions).
+Contributions that significantly diverge from the core ExcaliMath/Excalidraw user experience are generally out of scope, except for VS Code-specific integration improvements.
+
+If unsure, start a discussion: <https://github.com/DynoW/excalimath-vscode/discussions>

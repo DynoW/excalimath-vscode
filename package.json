@@ -3,7 +3,7 @@
     "icon": "assets/logo-transparent.png",
     "displayName": "ExcaliMath",
     "description": "Render beautiful LaTeX math equations directly in Excalidraw",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "publisher": "DynoW",
     "engines": {
         "vscode": "^1.63.0"
