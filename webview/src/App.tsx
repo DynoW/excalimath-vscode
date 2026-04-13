@@ -167,6 +167,7 @@ export default function App(props: {
           ) : null
         }
         UIOptions={{
+          dockedSidebarBreakpoint: 650,
           canvasActions: {
             loadScene: false,
             saveToActiveFile: false,

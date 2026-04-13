@@ -289,8 +289,8 @@ export class ExcalidrawEditor {
 
   private getTheme() {
     return vscode.workspace
-      .getConfiguration("excalidraw")
-      .get("theme", "light");
+      .getConfiguration("excalimath")
+      .get("theme", "auto");
   }
 
   public extractName(uri: vscode.Uri) {
