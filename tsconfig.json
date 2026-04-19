@@ -6,6 +6,10 @@
       "ES2019",
       "WebWorker"
     ],
+    "types": [
+      "node",
+      "vscode"
+    ],
     "outDir": "out",
     "sourceMap": true,
     "moduleResolution": "node",

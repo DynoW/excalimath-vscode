@@ -2,12 +2,13 @@ name: Publish Extension
 
 on:
   push:
-    tags:
-      - 'v*' # Trigger automatically when you push a tag like v1.0.0
-  workflow_dispatch: # Also allow you to trigger it manually from the GitHub UI
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
   publish:
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/master' && startsWith(github.event.head_commit.message, 'Release ')) }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive # Crucial: this tells GitHub to clone the excalimath vendor folder too!
+          submodules: recursive
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -26,6 +27,34 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Resolve release metadata
+        id: release_meta
+        shell: bash
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            TAG="${GITHUB_REF#refs/tags/}"
+          else
+            TAG="v${VERSION}"
+          fi
+
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+
+      - name: Ensure release tag exists
+        shell: bash
+        run: |
+          TAG="${{ steps.release_meta.outputs.tag }}"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "Tag ${TAG} already exists on origin"
+          else
+            git tag "${TAG}" "${GITHUB_SHA}"
+            git push origin "refs/tags/${TAG}"
+            echo "Created and pushed tag ${TAG}"
+          fi
+
       - name: Build VSIX
         run: npx @vscode/vsce package
 
@@ -35,7 +64,34 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.release_meta.outputs.tag }}
+          name: ExcaliMath ${{ steps.release_meta.outputs.tag }}
+          target_commitish: ${{ github.sha }}
           files: "*.vsix"
-          generate_release_notes: true
+          body: |
+            ## Install
+
+            ### Option 1: VS Code Marketplace
+
+            Install from the Marketplace:
+            https://marketplace.visualstudio.com/items?itemName=DynoW.excalimath-editor
+
+            Or run:
+
+            ```bash
+            code --install-extension DynoW.excalimath-editor
+            ```
+
+            ### Option 2: VSIX file
+
+            Download the attached `.vsix` asset from this release and install it with:
+
+            ```bash
+            code --install-extension excalimath-editor-${{ steps.release_meta.outputs.version }}.vsix
+            ```
+
+            Or use the VS Code UI to install from the downloaded file.
+            
+            CTRL+SHIFT+P -> "Extensions: Install from VSIX..." -> Select the downloaded file
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
