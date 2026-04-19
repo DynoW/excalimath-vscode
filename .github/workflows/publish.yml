@@ -25,7 +25,9 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm ci --ignore-scripts
+          npm ci --prefix webview --ignore-scripts
 
       - name: Resolve release metadata
         id: release_meta
@@ -90,7 +92,7 @@ jobs:
             code --install-extension excalimath-editor-${{ steps.release_meta.outputs.version }}.vsix
             ```
 
-            Or use the VS Code UI to install from the downloaded file.
+            Or use the VS Code UI to install from the downloaded file:
             
             CTRL+SHIFT+P -> "Extensions: Install from VSIX..." -> Select the downloaded file
         env:
