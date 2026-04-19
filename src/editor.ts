@@ -152,8 +152,14 @@ export class ExcalidrawEditor {
   public async setupWebview() {
     // Setup initial content for the webview
     // Receive message from the webview.
+    const webviewDistUri = vscode.Uri.joinPath(
+      this.context.extensionUri,
+      "webview",
+      "dist"
+    );
     this.webview.options = {
       enableScripts: true,
+      localResourceRoots: [webviewDistUri],
     };
 
     let libraryUri = await this.getLibraryUri();
@@ -379,12 +385,19 @@ export class ExcalidrawEditor {
         const lower = p2.toLowerCase();
         if (
           p2.startsWith("#") ||
+          lower.startsWith("data:") ||
+          lower.startsWith("blob:") ||
+          lower.startsWith("vscode-webview:") ||
           lower.startsWith("http://") ||
           lower.startsWith("https://")
         ) {
           return subString;
         }
-        const newUri = vscode.Uri.joinPath(documentUri, p2);
+
+        // Vite emits absolute web paths (e.g. /assets/foo.js). Treat these as
+        // relative to the dist root so they resolve inside the extension.
+        const normalized = p2.replace(/^\/+/, "");
+        const newUri = vscode.Uri.joinPath(documentUri, normalized);
         const newUrl = [p1, this.webview.asWebviewUri(newUri), p3].join("");
         return newUrl;
       }
