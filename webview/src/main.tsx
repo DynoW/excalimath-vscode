@@ -32,15 +32,16 @@ async function getInitialData(
   ];
   for (const contentType of potentialContentTypes) {
     try {
+      let decodedContent: string | Uint8Array;
+      if (contentType == "image/png") {
+        decodedContent = content;
+      } else {
+        const decoder = new TextDecoder("utf-8", { fatal: true } as any);
+        decodedContent = decoder.decode(content);
+      }
+
       const initialData = await loadFromBlob(
-        new Blob(
-          [
-            contentType == "image/png"
-              ? content
-              : new TextDecoder().decode(content),
-          ],
-          { type: contentType }
-        ),
+        new Blob([decodedContent] as any, { type: contentType }),
         null,
         null
       );

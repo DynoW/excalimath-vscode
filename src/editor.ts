@@ -152,14 +152,8 @@ export class ExcalidrawEditor {
   public async setupWebview() {
     // Setup initial content for the webview
     // Receive message from the webview.
-    const webviewDistUri = vscode.Uri.joinPath(
-      this.context.extensionUri,
-      "webview",
-      "dist"
-    );
     this.webview.options = {
       enableScripts: true,
-      localResourceRoots: [webviewDistUri],
     };
 
     let libraryUri = await this.getLibraryUri();
