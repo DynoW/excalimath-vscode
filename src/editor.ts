@@ -152,8 +152,15 @@ export class ExcalidrawEditor {
   public async setupWebview() {
     // Setup initial content for the webview
     // Receive message from the webview.
+    const webviewDistUri = vscode.Uri.joinPath(
+      this.context.extensionUri,
+      "webview",
+      "dist"
+    );
+
     this.webview.options = {
       enableScripts: true,
+      localResourceRoots: [webviewDistUri],
     };
 
     let libraryUri = await this.getLibraryUri();
@@ -350,11 +357,7 @@ export class ExcalidrawEditor {
   }
 
   private async buildHtmlForWebview(config: any): Promise<string> {
-    const webviewUri = vscode.Uri.joinPath(
-      this.context.extensionUri,
-      "webview",
-      "dist"
-    );
+    const webviewUri = vscode.Uri.joinPath(this.context.extensionUri, "webview", "dist");
     const content = await vscode.workspace.fs.readFile(
       vscode.Uri.joinPath(webviewUri, "index.html")
     );

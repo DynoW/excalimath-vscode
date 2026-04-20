@@ -1,0 +1,18 @@
+Third-Party Notices
+
+This project includes and/or derives from third-party open-source software.
+
+1) Excalidraw
+- Project: https://github.com/excalidraw/excalidraw
+- License: MIT
+- Copyright: Excalidraw contributors
+- Notes: Parts of this extension are derived from Excalidraw-related editor/webview integration and associated implementation patterns.
+
+2) ExcaliMath Core
+- Package: @excalimath/core
+- Project: https://github.com/DynoW/excalimath
+- License: MIT
+- Copyright: ExcaliMath contributors
+- Notes: Used as a runtime dependency for math features in the webview.
+
+A copy of the MIT License text is available in the LICENSE file.

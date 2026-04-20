@@ -3,6 +3,5 @@
 !dist/**
 !assets/**
 !README.md
-!CHANGELOG.md
 !package.json
 !LICENSE

@@ -3,7 +3,7 @@
     "icon": "assets/logo-transparent.png",
     "displayName": "ExcaliMath",
     "description": "Render beautiful LaTeX math equations directly in Excalidraw",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "publisher": "DynoW",
     "engines": {
         "vscode": "^1.63.0"
@@ -370,16 +370,15 @@
         ]
     },
     "scripts": {
-        "install": "npm run build-vendor && cd webview && npm install",
-        "build-webview": "npm run build-vendor && cd webview && npm run build",
+        "install": "npm install --prefix webview",
+        "build-webview": "npm run build --prefix webview",
         "build": "npm run build-webview && webpack --mode development",
         "package": "npm run build-webview && webpack --mode production --devtool hidden-source-map",
         "vscode:prepublish": "npm run package",
         "lint": "eslint --ext .ts src",
         "prettier": "prettier --check .",
         "prettierfix": "prettier --write .",
-        "open-in-browser": "vscode-test-web --headless --extensionDevelopmentPath=. ./examples",
-        "build-vendor": "cd vendor/excalimath && npm install && npm run build"
+        "open-in-browser": "vscode-test-web --headless --extensionDevelopmentPath=. ./examples"
     },
     "capabilities": {
         "untrustedWorkspaces": {
