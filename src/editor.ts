@@ -302,7 +302,13 @@ export class ExcalidrawEditor {
 
   public extractName(uri: vscode.Uri) {
     const name = path.parse(uri.fsPath).name;
-    return name.endsWith(".excalidraw") ? name.slice(0, -11) : name;
+    if (name.endsWith(".excalidraw")) {
+      return name.slice(0, -11);
+    }
+    if (name.endsWith(".excalimath")) {
+      return name.slice(0, -10);
+    }
+    return name;
   }
 
   public async getLibraryUri() {
@@ -438,9 +444,13 @@ async function openLink(uri: vscode.Uri, source: vscode.Uri): Promise<void> {
 
   const extensions = [
     ".excalidraw",
+    ".excalimath",
     ".excalidraw.json",
+    ".excalimath.json",
     ".excalidraw.png",
+    ".excalimath.png",
     ".excalidraw.svg",
+    ".excalimath.svg",
   ];
   for (const ext of extensions) {
     if (targetUri.fsPath.endsWith(ext)) {

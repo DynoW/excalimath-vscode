@@ -6,9 +6,13 @@ ExcaliMath brings Excalidraw and advanced math workflows directly into Visual St
 
 Create or open files with one of these extensions:
 
+- `.excalimath`
 - `.excalidraw`
+- `.excalimath.svg`
 - `.excalidraw.svg`
+- `.excalimath.png`
 - `.excalidraw.png`
+- `.excalimath.json`
 - `.excalidraw.json`
 
 Try the web version: <https://excalimath.my-lab.ro/> (fully Excalidraw compatible).
@@ -42,6 +46,8 @@ Try the web version: <https://excalimath.my-lab.ro/> (fully Excalidraw compatibl
 
 Rename file extension to change export/source format, for example:
 
+- `document.excalimath` -> `document.excalimath.png`
+- `document.excalimath` -> `document.excalimath.svg`
 - `document.excalidraw` -> `document.excalidraw.png`
 - `document.excalidraw` -> `document.excalidraw.svg`
 
@@ -80,8 +86,11 @@ Switch between visual editor and file source (text/image) using the editor toolb
 
 By default, the extension handles:
 
+- `*.excalimath`
 - `*.excalidraw`
+- `*.excalimath.svg`
 - `*.excalidraw.svg`
+- `*.excalimath.png`
 - `*.excalidraw.png`
 
 To associate more extensions (example: all SVG files), add:

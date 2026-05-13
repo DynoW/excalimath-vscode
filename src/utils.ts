@@ -22,7 +22,7 @@ let runningCounter = 0;
 export async function newUntitledExcalidrawDocument() {
   runningCounter += 1;
   const ws = getActiveWorkspace();
-  let fileName = `Untitled-${runningCounter}.excalidraw`;
+  let fileName = `Untitled-${runningCounter}.excalimath`;
   if (ws) {
     fileName = path.join(ws.uri.fsPath, fileName);
   }

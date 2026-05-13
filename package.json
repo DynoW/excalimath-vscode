@@ -32,7 +32,7 @@
         "url": "https://github.com/DynoW"
     },
     "activationEvents": [
-        "workspaceContains:**/*.{excalidraw,excalidraw.svg,excalidraw.png}"
+        "workspaceContains:**/*.{excalidraw,excalimath,excalidraw.svg,excalimath.svg,excalidraw.png,excalimath.png,excalidraw.json,excalimath.json}"
     ],
     "repository": {
         "type": "git",
@@ -259,6 +259,7 @@
                 "id": "json",
                 "extensions": [
                     ".excalidraw",
+                    ".excalimath",
                     ".excalidrawlib"
                 ]
             }
@@ -306,19 +307,19 @@
                 {
                     "command": "excalimath.showEditor",
                     "alt": "excalimath.showEditorToSide",
-                    "when": "activeCustomEditorId != 'editor.excalimath' && resourceFilename =~ /^.+\\.excalidraw(.png|.svg)?$/",
+                    "when": "activeCustomEditorId != 'editor.excalimath' && resourceFilename =~ /^.+\\.(excalidraw|excalimath)(\\.png|\\.svg)?$/",
                     "group": "navigation"
                 },
                 {
                     "command": "excalimath.showSource",
                     "alt": "excalimath.showSourceToSide",
                     "group": "navigation",
-                    "when": "activeCustomEditorId == 'editor.excalimath' && resourceFilename =~ /^.+\\.excalidraw(.svg)?$/"
+                    "when": "activeCustomEditorId == 'editor.excalimath' && resourceFilename =~ /^.+\\.(excalidraw|excalimath)(\\.svg)?$/"
                 },
                 {
                     "command": "excalimath.showImage",
                     "alt": "excalimath.showImageToSide",
-                    "when": "activeCustomEditorId == 'editor.excalimath' && resourceFilename =~ /^.+\\.excalidraw.png$/",
+                    "when": "activeCustomEditorId == 'editor.excalimath' && resourceFilename =~ /^.+\\.(excalidraw|excalimath)\\.png$/",
                     "group": "navigation"
                 },
                 {
@@ -343,13 +344,25 @@
                         "filenamePattern": "*.excalidraw"
                     },
                     {
+                        "filenamePattern": "*.excalimath"
+                    },
+                    {
                         "filenamePattern": "*.excalidraw.json"
+                    },
+                    {
+                        "filenamePattern": "*.excalimath.json"
                     },
                     {
                         "filenamePattern": "*.excalidraw.svg"
                     },
                     {
+                        "filenamePattern": "*.excalimath.svg"
+                    },
+                    {
                         "filenamePattern": "*.excalidraw.png"
+                    },
+                    {
+                        "filenamePattern": "*.excalimath.png"
                     }
                 ]
             }
