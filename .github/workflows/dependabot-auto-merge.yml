@@ -10,7 +10,42 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:
-      - name: Enable auto-merge
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check patch-only bumps
+        id: diff
+        run: |
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          DIFF=$(node -e "
+            const { execSync } = require('child_process');
+            function getJson(sha, path) {
+              try { return JSON.parse(execSync('git show \"' + sha + ':' + path + '\"', {encoding:'utf8'})); } catch(e) { return {}; }
+            }
+            function checkPatch(base, head) {
+              const deps = {...base.dependencies, ...base.devDependencies};
+              const newDeps = {...head.dependencies, ...head.devDependencies};
+              for (const [k, v] of Object.entries(newDeps)) {
+                const oldVer = deps[k];
+                if (!oldVer || oldVer === v) continue;
+                const oldClean = oldVer.replace(/^[\^~>=<]/, '');
+                const newClean = v.replace(/^[\^~>=<]/, '');
+                const [omaj, omin] = oldClean.split('.').map(Number);
+                const [nmaj, nmin] = newClean.split('.').map(Number);
+                if (nmaj > omaj) return false;
+                if (nmin > omin) return false;
+              }
+              return true;
+            }
+            const basePkg = getJson('$BASE_SHA', 'package.json');
+            const headPkg = JSON.parse(require('fs').readFileSync('package.json','utf8'));
+            const baseWebview = getJson('$BASE_SHA', 'webview/package.json');
+            const headWebview = JSON.parse(require('fs').readFileSync('webview/package.json','utf8'));
+            const ok = checkPatch(basePkg, headPkg) && checkPatch(baseWebview, headWebview);
+            process.stdout.write(ok ? 'true' : 'false');
+          " <<< ''
+          echo "patch_only=$DIFF" >> "$GITHUB_OUTPUT"
+      - name: Enable auto-merge (patch only)
+        if: steps.diff.outputs.patch_only == 'true'
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
