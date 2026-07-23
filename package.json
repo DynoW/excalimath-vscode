@@ -406,7 +406,7 @@
         "@typescript-eslint/parser": "^5.40.0",
         "@vscode/test-web": "*",
         "eslint": "^8.25.0",
-        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-prettier": "^4.2.1",
         "prettier": "^2.7.1",
         "ts-loader": "^9.4.1",
