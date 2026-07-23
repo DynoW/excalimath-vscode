@@ -400,7 +400,7 @@
     },
     "devDependencies": {
         "@excalidraw/eslint-config": "^1.0.3",
-        "@types/node": "^18.11.0",
+        "@types/node": "^26.1.1",
         "@types/vscode": "^1.63.0",
         "@typescript-eslint/eslint-plugin": "^5.40.0",
         "@typescript-eslint/parser": "^5.40.0",
