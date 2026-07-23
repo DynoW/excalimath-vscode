@@ -415,7 +415,7 @@
         "webpack-cli": "^7.2.1"
     },
     "dependencies": {
-        "js-base64": "^3.7.2",
+        "js-base64": "^3.9.1",
         "path-browserify": "^1.0.1"
     }
 }
