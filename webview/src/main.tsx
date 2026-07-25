@@ -4,7 +4,7 @@ import {
   loadLibraryFromBlob,
 } from "@excalidraw/excalidraw";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Base64 } from "js-base64";
 
 import App from "./App";
@@ -113,7 +113,8 @@ async function main() {
     };
 
     const isDirty = !initialData || config.contentType != initialContentType;
-    ReactDOM.render(
+    const root = createRoot(rootElement);
+    root.render(
       <React.StrictMode>
         <App
           initialData={initialData}
@@ -131,8 +132,7 @@ async function main() {
           langCode={config.langCode}
           dirty={isDirty}
         />
-      </React.StrictMode>,
-      rootElement
+      </React.StrictMode>
     );
   } catch (error) {
     vscode.postMessage({

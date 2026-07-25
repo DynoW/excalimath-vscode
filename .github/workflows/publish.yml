@@ -6,6 +6,10 @@ on:
       - master
     paths:
       - package.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 concurrency:
   group: publish-extension-${{ github.ref }}
@@ -38,7 +42,12 @@ jobs:
         shell: bash
         run: |
           CURRENT_VERSION=$(node -p "require('./package.json').version")
-          PREV_VERSION=$(git show "${{ github.event.before }}":package.json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version" 2>/dev/null || true)
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            PREV_SHA="HEAD~1"
+          else
+            PREV_SHA="${{ github.event.before }}"
+          fi
+          PREV_VERSION=$(git show "${PREV_SHA}:package.json" 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version" 2>/dev/null || true)
 
           echo "current=${CURRENT_VERSION}" >> "$GITHUB_OUTPUT"
           echo "previous=${PREV_VERSION}" >> "$GITHUB_OUTPUT"

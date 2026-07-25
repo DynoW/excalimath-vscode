@@ -1,0 +1,39 @@
+name: Bump @excalimath/core
+
+on:
+  repository_dispatch:
+    types: [bump-core]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Bump core in webview
+        working-directory: webview
+        run: npm install @excalimath/core@${{ github.event.client_payload.version }}
+        timeout-minutes: 5
+      - name: Bump extension version
+        run: npm version patch --no-git-tag-version
+      - name: Commit and push
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add webview/package.json webview/package-lock.json package.json package-lock.json
+          git diff --cached --quiet || git commit -m "chore: bump @excalimath/core to v${{ github.event.client_payload.version }}"
+          gh auth setup-git
+          git push
+      - name: Trigger publish workflow
+        run: gh workflow run "Publish Extension" --ref master
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
