@@ -400,9 +400,9 @@
     },
     "devDependencies": {
         "@excalidraw/eslint-config": "^1.0.3",
-        "@types/node": "^26.1.2",
+        "@types/node": "^26.1.1",
         "@types/vscode": "^1.125.0",
-        "@typescript-eslint/eslint-plugin": "^8.66.0",
+        "@typescript-eslint/eslint-plugin": "^8.65.0",
         "@typescript-eslint/parser": "^8.65.0",
         "@vscode/test-web": "*",
         "eslint": "^10.8.0",
@@ -415,7 +415,7 @@
         "webpack-cli": "^7.2.2"
     },
     "dependencies": {
-        "js-base64": "^3.9.2",
+        "js-base64": "^3.9.1",
         "path-browserify": "^1.0.1"
     }
 }
