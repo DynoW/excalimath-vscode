@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.1",
-    "@excalimath/core": "^1.2.3",
+    "@excalimath/core": "^1.2.6",
     "js-base64": "^3.9.2",
     "lodash-es": "^4.18.0",
     "react": "^19.2.8",
