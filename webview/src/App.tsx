@@ -82,7 +82,7 @@ export default function App(props: {
   onChange: (
     elements: readonly any[],
     appState: Partial<AppState>,
-    files?: BinaryFiles
+    files?: BinaryFiles,
   ) => void;
 }) {
   const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>();
@@ -187,7 +187,7 @@ export default function App(props: {
           props.onChange(
             elements,
             { ...appState, ...imageParams, exportEmbedScene: true },
-            files
+            files,
           )
         }
         onLinkOpen={(element, event) => {

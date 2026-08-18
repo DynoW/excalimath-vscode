@@ -24,7 +24,7 @@ const mimeTypeFallbacks = {
 
 async function getInitialData(
   content: Uint8Array,
-  contentType: string
+  contentType: string,
 ): Promise<[ExcalidrawInitialDataState, string]> {
   const potentialContentTypes = [
     contentType,
@@ -43,7 +43,7 @@ async function getInitialData(
       const initialData = await loadFromBlob(
         new Blob([decodedContent] as any, { type: contentType }),
         null,
-        null
+        null,
       );
 
       return [{ ...initialData }, contentType];
@@ -65,7 +65,7 @@ function getExcalidrawConfig(rootElement: HTMLElement) {
 async function getLibraryItems(libraryString: string) {
   try {
     return await loadLibraryFromBlob(
-      new Blob([libraryString], { type: "application/json" })
+      new Blob([libraryString], { type: "application/json" }),
     );
   } catch (e) {
     vscode.postMessage({
@@ -88,7 +88,7 @@ async function main() {
       config.content.length > 0
         ? await getInitialData(
             new Uint8Array(config.content),
-            config.contentType
+            config.contentType,
           )
         : [undefined, config.contentType];
 
@@ -97,9 +97,9 @@ async function main() {
       onChange: (
         elements: readonly any[],
         appState: Partial<AppState>,
-        files: BinaryFiles
+        files: BinaryFiles,
       ) => void,
-      initialVersion: number
+      initialVersion: number,
     ) => {
       let previousVersion = initialVersion;
 
@@ -126,13 +126,13 @@ async function main() {
           theme={config.theme}
           onChange={debouncedOnChange(
             sendChanges,
-            isDirty ? -1 : hashElementsVersion(initialData.elements || [])
+            isDirty ? -1 : hashElementsVersion(initialData.elements || []),
           )}
           imageParams={config.imageParams}
           langCode={config.langCode}
           dirty={isDirty}
         />
-      </React.StrictMode>
+      </React.StrictMode>,
     );
   } catch (error) {
     vscode.postMessage({

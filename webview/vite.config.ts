@@ -9,7 +9,7 @@ function copyExcalidrawFontsPlugin() {
     closeBundle() {
       const sourceDir = path.resolve(
         __dirname,
-        "node_modules/@excalidraw/excalidraw/dist/prod/fonts"
+        "node_modules/@excalidraw/excalidraw/dist/prod/fonts",
       );
       const targetDir = path.resolve(__dirname, "dist/fonts");
 

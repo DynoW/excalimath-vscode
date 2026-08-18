@@ -13,9 +13,11 @@ const textEncoder = new TextEncoder();
 const svg2VSCode = async (
   elements: readonly any[],
   appState: Partial<AppState>,
-  files: BinaryFiles
+  files: BinaryFiles,
 ) => {
-  const nonDeletedElements = elements.filter((element: any) => !element.isDeleted);
+  const nonDeletedElements = elements.filter(
+    (element: any) => !element.isDeleted,
+  );
   const svg = await exportToSvg({
     elements: nonDeletedElements,
     appState,
@@ -30,9 +32,11 @@ const svg2VSCode = async (
 const png2VSCode = async (
   elements: readonly any[],
   appState: Partial<AppState>,
-  files: BinaryFiles
+  files: BinaryFiles,
 ) => {
-  const nonDeletedElements = elements.filter((element: any) => !element.isDeleted);
+  const nonDeletedElements = elements.filter(
+    (element: any) => !element.isDeleted,
+  );
   const blob = await exportToBlob({
     elements: nonDeletedElements,
     appState,
@@ -63,12 +67,12 @@ const png2VSCode = async (
 const json2VSCode = (
   elements: readonly any[],
   appState: Partial<AppState>,
-  files: BinaryFiles
+  files: BinaryFiles,
 ) => {
   vscode.postMessage({
     type: "change",
     content: Array.from(
-      textEncoder.encode(serializeAsJSON(elements, appState, files, "local"))
+      textEncoder.encode(serializeAsJSON(elements, appState, files, "local")),
     ),
   });
 };

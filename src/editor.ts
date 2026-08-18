@@ -6,11 +6,9 @@ import { ExcalidrawDocument } from "./document";
 import { languageMap } from "./lang";
 import { showEditor } from "./commands";
 
-export class ExcalidrawEditorProvider
-  implements vscode.CustomEditorProvider<ExcalidrawDocument>
-{
+export class ExcalidrawEditorProvider implements vscode.CustomEditorProvider<ExcalidrawDocument> {
   public static async register(
-    context: vscode.ExtensionContext
+    context: vscode.ExtensionContext,
   ): Promise<vscode.Disposable> {
     const provider = new ExcalidrawEditorProvider(context);
     const providerRegistration = vscode.window.registerCustomEditorProvider(
@@ -19,7 +17,7 @@ export class ExcalidrawEditorProvider
       {
         supportsMultipleEditorsPerDocument: false,
         webviewOptions: { retainContextWhenHidden: true },
-      }
+      },
     );
 
     ExcalidrawEditorProvider.migrateLegacyLibraryItems(context);
@@ -41,7 +39,7 @@ export class ExcalidrawEditorProvider
           source:
             "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
           libraryItems,
-        })
+        }),
       )
       .then(() => {
         context.globalState.update("libraryItems", undefined);
@@ -54,12 +52,12 @@ export class ExcalidrawEditorProvider
 
   public async resolveCustomEditor(
     document: ExcalidrawDocument,
-    webviewPanel: vscode.WebviewPanel
+    webviewPanel: vscode.WebviewPanel,
   ) {
     const editor = new ExcalidrawEditor(
       document,
       webviewPanel.webview,
-      this.context
+      this.context,
     );
     const editorDisposable = await editor.setupWebview();
 
@@ -76,7 +74,7 @@ export class ExcalidrawEditorProvider
 
   async backupCustomDocument(
     document: ExcalidrawDocument,
-    context: vscode.CustomDocumentBackupContext
+    context: vscode.CustomDocumentBackupContext,
   ): Promise<vscode.CustomDocumentBackup> {
     return document.backup(context.destination);
   }
@@ -84,16 +82,16 @@ export class ExcalidrawEditorProvider
   // TODO: Backup Support
   async openCustomDocument(
     uri: vscode.Uri,
-    openContext: vscode.CustomDocumentOpenContext
+    openContext: vscode.CustomDocumentOpenContext,
   ): Promise<ExcalidrawDocument> {
     let content: Uint8Array;
     if (uri.scheme === "untitled") {
       content = new TextEncoder().encode(
-        JSON.stringify({ type: "excalidraw", elements: [] })
+        JSON.stringify({ type: "excalidraw", elements: [] }),
       );
     } else {
       content = await vscode.workspace.fs.readFile(
-        openContext.backupId ? vscode.Uri.parse(openContext.backupId) : uri
+        openContext.backupId ? vscode.Uri.parse(openContext.backupId) : uri,
       );
     }
     const document = new ExcalidrawDocument(uri, content);
@@ -119,7 +117,7 @@ export class ExcalidrawEditorProvider
 
   async saveCustomDocumentAs(
     document: ExcalidrawDocument,
-    destination: vscode.Uri
+    destination: vscode.Uri,
   ) {
     await document.saveAs(destination);
   }
@@ -139,7 +137,7 @@ export class ExcalidrawEditor {
   constructor(
     readonly document: ExcalidrawDocument,
     readonly webview: vscode.Webview,
-    readonly context: vscode.ExtensionContext
+    readonly context: vscode.ExtensionContext,
   ) {}
 
   isViewOnly() {
@@ -155,7 +153,7 @@ export class ExcalidrawEditor {
     const webviewDistUri = vscode.Uri.joinPath(
       this.context.extensionUri,
       "webview",
-      "dist"
+      "dist",
     );
 
     this.webview.options = {
@@ -187,7 +185,7 @@ export class ExcalidrawEditor {
             break;
         }
       },
-      this
+      this,
     );
 
     const onDidChangeThemeConfiguration =
@@ -227,7 +225,7 @@ export class ExcalidrawEditor {
         if (
           !e.affectsConfiguration(
             "excalimath.workspaceLibraryPath",
-            this.document.uri
+            this.document.uri,
           )
         ) {
           return;
@@ -249,7 +247,7 @@ export class ExcalidrawEditor {
           library,
           merge: true,
         });
-      }
+      },
     );
 
     const onDidChangeLibrary = ExcalidrawEditor.onDidChangeLibrary(
@@ -259,7 +257,7 @@ export class ExcalidrawEditor {
           library,
           merge: false,
         });
-      }
+      },
     );
 
     this.webview.html = await this.buildHtmlForWebview({
@@ -295,9 +293,7 @@ export class ExcalidrawEditor {
   }
 
   private getTheme() {
-    return vscode.workspace
-      .getConfiguration("excalimath")
-      .get("theme", "auto");
+    return vscode.workspace.getConfiguration("excalimath").get("theme", "auto");
   }
 
   public extractName(uri: vscode.Uri) {
@@ -322,7 +318,7 @@ export class ExcalidrawEditor {
 
     const fileWorkspace = getFileWorkspaceFolder(
       this.document.uri,
-      workspaceFolders as vscode.WorkspaceFolder[]
+      workspaceFolders as vscode.WorkspaceFolder[],
     );
     if (!fileWorkspace) {
       return;
@@ -355,7 +351,7 @@ export class ExcalidrawEditor {
     try {
       await vscode.workspace.fs.writeFile(
         libraryUri,
-        new TextEncoder().encode(library)
+        new TextEncoder().encode(library),
       );
     } catch (e) {
       await vscode.window.showErrorMessage(`Failed to save library: ${e}`);
@@ -363,20 +359,24 @@ export class ExcalidrawEditor {
   }
 
   private async buildHtmlForWebview(config: any): Promise<string> {
-    const webviewUri = vscode.Uri.joinPath(this.context.extensionUri, "webview", "dist");
+    const webviewUri = vscode.Uri.joinPath(
+      this.context.extensionUri,
+      "webview",
+      "dist",
+    );
     const content = await vscode.workspace.fs.readFile(
-      vscode.Uri.joinPath(webviewUri, "index.html")
+      vscode.Uri.joinPath(webviewUri, "index.html"),
     );
     let html = this.textDecoder.decode(content);
 
     html = html.replace(
       "{{data-excalidraw-config}}",
-      Base64.encode(JSON.stringify(config))
+      Base64.encode(JSON.stringify(config)),
     );
 
     html = html.replace(
       "{{excalidraw-asset-path}}",
-      `${this.webview.asWebviewUri(webviewUri).toString()}/`
+      `${this.webview.asWebviewUri(webviewUri).toString()}/`,
     );
 
     return this.fixLinks(html, webviewUri);
@@ -403,14 +403,14 @@ export class ExcalidrawEditor {
         const newUri = vscode.Uri.joinPath(documentUri, normalized);
         const newUrl = [p1, this.webview.asWebviewUri(newUri), p3].join("");
         return newUrl;
-      }
+      },
     );
   }
 }
 
 function getFileWorkspaceFolder(
   uri: vscode.Uri,
-  workspaceFolders: vscode.WorkspaceFolder[]
+  workspaceFolders: vscode.WorkspaceFolder[],
 ): vscode.WorkspaceFolder | undefined {
   const parts = uri.path.split(path.sep).slice(0, -1);
   while (parts.length > 0) {
