@@ -1,25 +1,19 @@
-import tsParser from "@typescript-eslint/parser";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import eslintPluginPrettier from "eslint-plugin-prettier";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default [
   { ignores: ["dist", "node_modules", "webview/dist", "webview/node_modules"] },
+  ...tsPlugin.configs["flat/recommended"],
   {
     files: ["src/**/*.ts"],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: "module",
-      },
-    },
     plugins: {
-      "@typescript-eslint": tsPlugin,
       prettier: eslintPluginPrettier,
     },
     rules: {
-      ...tsPlugin.configs["flat/recommended"].rules,
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-unused-expressions": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
       curly: "warn",
       "dot-notation": "warn",
@@ -28,7 +22,7 @@ export default [
       "no-lonely-if": "warn",
       "no-restricted-globals": "off",
       "no-unneeded-ternary": "warn",
-      "no-unused-expressions": "warn",
+      "no-unused-expressions": "off",
       "no-unused-vars": "off",
       "no-useless-return": "warn",
       "no-var": "warn",
