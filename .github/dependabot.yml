@@ -1,0 +1,8 @@
+version: 2
+updates:
+  # npm updates intentionally disabled for this repo (sandboxed extension, low risk)
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
