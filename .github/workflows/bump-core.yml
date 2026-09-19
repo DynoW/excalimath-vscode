@@ -33,7 +33,3 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: bump @excalimath/core to v${{ github.event.client_payload.version }}"
           gh auth setup-git
           git push
-      - name: Trigger publish workflow
-        run: gh workflow run "Publish Extension" --ref master
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
